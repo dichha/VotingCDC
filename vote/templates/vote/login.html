@@ -1,0 +1,14 @@
+{% extends 'vote/base.html' %}
+{% block content %}
+	<h1 class="login"> {{title}} Page</h1>
+	<form method="POST" class="login-form">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit" value="login" class="btn btn-primary">Sign in</button>
+	</form>
+	<div>
+	<p>No account? <a href="{% url 'vote:register' %}" class="link">Register</a></p>
+	</div>
+{% endblock %}
+
+

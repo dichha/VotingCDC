@@ -1,0 +1,6 @@
+{% extends 'vote/base.html' %}
+{% block content %}
+	<h1 class="login">Hello World, Hello Vote App...</h1>
+	<button type="submit" class="btn btn-primary"><a href="{% url 'vote:login' %}">Check in to Vote</a></button>
+{% endblock %}
+

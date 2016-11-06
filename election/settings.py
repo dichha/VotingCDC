@@ -25,6 +25,7 @@ SECRET_KEY = 'urht3nl_^os=g8b3=v4w_dm%dpf#wblh(w4%7kicnijdzp9k+t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 
