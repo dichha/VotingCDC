@@ -1,6 +1,76 @@
 {% extends 'vote/base.html' %}
 {% block content %}
-	<h1 class="login">Hello World, Hello Vote App...</h1>
-	<button type="submit" class="btn btn-primary"><a href="{% url 'vote:login' %}">Check in to Vote</a></button>
+<!doctype html>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'vote:landing' %}">Election Webapp</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'vote:register' %}">Signup  </a></li>
+        <li><a href="{% url 'vote:login' %}">Login  </a></li>
+      </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="text-center">Your Vote Makes A Difference</h1>
+<!--          <p class="text-center">Subtext</p>-->
+          <div class="jumbotron_button text-center">        
+              <p><a class="btn btn-primary btn-lg " href="{% url 'vote:login' %}" role="button">Get Started</a></p>
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-center">
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            <h2>Vote online within minutes</h2>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="fa fa-television" aria-hidden="true"></i>
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <h2>Submit your vote on your PC or mobile device</h2>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <h2>View your voting history and past ballots</h2>
+        </div>
+      </div>
+    </div>
+       
+    <div class="container-fluid">
+        <div class="container text-center">
+            <h1>Start Voting Today  </h1>
+            <!--<h2>Sign Up Online </h2>-->
+            <p><a class="btn btn-default btn-lg" href="{% url 'vote:register' %}" role="button"> Register Now</a></p>
+        </div>
+    </div>
+
+    <hr>
+      
+    <div class="container">
+      <footer>
+        <p>Team 5</p>
+      </footer>
+    </div>
+    
+    </body>
+</html>
+
 {% endblock %}
 
