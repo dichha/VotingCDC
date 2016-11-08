@@ -27,15 +27,17 @@ class UserLoginForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
 	email = forms.EmailField(label="Email address")
-	email2 = forms.EmailField(label="Confirm Email")
+	email2 = forms.EmailField(label="Confirm email")
 	password = forms.CharField(widget=forms.PasswordInput)
+	password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm password")
 
 	class Meta:
 		model = User
 		fields = ['first_name',
 		'last_name', 
 		'username', 
-		'password', 
+		'password',
+		'password2', 
 		'email',
 		'email2',]
 
@@ -49,3 +51,15 @@ class UserRegistrationForm(forms.ModelForm):
 		if email_qs.exists():
 			raise forms.ValidationError("This email has already been registered")
 		return email
+
+
+	def clean_password2(self):
+		#print(self.cleaned_data)
+		password = self.cleaned_data.get('password')
+		password2 = self.cleaned_data.get('password2')
+		if not password == password2:
+			raise forms.ValidationError("Passwords must match")
+		
+		return password
+
+
