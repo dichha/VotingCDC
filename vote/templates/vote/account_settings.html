@@ -20,8 +20,8 @@
           <div class="navbar-collapse collapse navbar-inverse-collapse">
               <ul class="nav navbar-nav">
                   <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="#">Polls</a></li>
-                    <li><a href="#">Candidates</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="candidates.html">Candidates</a></li>
                     <li><a href="results.html">Results</a></li>
               </ul>
 
@@ -44,28 +44,33 @@
                                       <form class="form-horizontal">
                                           <fieldset>
                                               <legend>Update Your Information</legend>
+                                              * = required
                                               <div class="form-group">
                                                     <label class="control-label" for="disabledInput">Voter ID</label>
                                                     <input class="form-control" id="disabledInput" type="text" placeholder="Voter ID #" disabled="">
                                               </div>
                                               <div class="form-group">
-                                                <label class="control-label" for="inputDefault">First Name</label>
+                                                <label class="control-label" for="inputDefault">First Name *</label>
                                                 <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
                                               </div>
                                               <div class="form-group">
-                                                <label class="control-label" for="inputDefault">Last Name</label>
+                                                <label class="control-label" for="inputDefault">Last Name *</label>
                                                 <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
                                               </div>
                                               <div class="form-group">
-                                                <label for="inputEmail" class="control-label">Email</label>
+                                                <label for="inputEmail" class="control-label">Email *</label>
                                                 <input type="text" class="form-control" id="inputEmail" placeholder="Email">
                                               </div>
                                               <div class="form-group">
-                                                  <label for="inputPassword" class="control-label">Password</label>
+                                                  <label for="inputPassword" class="control-label">Password *</label>
                                                   <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                                               </div>
                                               <div class="form-group">
-                                                  <label class="control-label">Gender</label>
+                                                  <label for="inputPassword" class="control-label">Confirm Password *</label>
+                                                  <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password">
+                                              </div>
+                                              <div class="form-group">
+                                                  <label class="control-label">Gender *</label>
                                                   <div class="radio">
                                                     <label>
                                                       <input type="radio" name="optionsRadios" id="optionMale" value="male">
@@ -80,7 +85,7 @@
                                                   </div>
                                               </div>
                                               <div class="form-group">
-                                                <label class="control-label" for="inputDefault">Street Address</label>
+                                                <label class="control-label" for="inputDefault">Street Address *</label>
                                                 <input type="text" class="form-control" id="inputStreet" placeholder="Street Address">
                                               </div>
                                               <div class="form-group">
@@ -98,7 +103,7 @@
                                               </div>
 
                                               <div class="form-group">
-                                                <label class="control-label" for="inputDefault">ZIP Code</label>
+                                                <label class="control-label" for="inputDefault">ZIP Code *</label>
                                                 <input type="text" pattern="[0-9]{5}" class="form-control" id="inputZipCode" placeholder="ZIP Code">
                                               </div>
                                               <div class="form-group">
@@ -132,7 +137,7 @@
                                               <div class="form-group">
                                                 <div class="checkbox">
                                                   <label>
-                                                    <input type="checkbox"> By checking this box, I certify that this information is correct.
+                                                    <input type="checkbox"> By checking this box, I certify that this information is correct. *
                                                   </label>
                                                 </div>
                                               </div>
