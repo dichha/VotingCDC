@@ -5,6 +5,8 @@ from django.contrib.auth import(
 	login,
 	logout)
 from django.contrib.auth.models import User
+from django.forms import widgets
+from .models import Candidates
 
 class UserLoginForm(forms.Form):
 	username = forms.CharField()
@@ -63,3 +65,18 @@ class UserRegistrationForm(forms.ModelForm):
 		return password
 
 
+class CandidatesForm(forms.ModelForm): 
+	dob = forms.DateField(label="Date of birth")
+	c_image = forms.FileField(label="Profile Picture")
+	class Meta:
+		model = Candidates
+		#widgets = {'dob': forms.DateInput(attrs={'class': 'datepicker', 'type': 'date'})}
+		fields = [
+		'first_name',
+		'middle_name',
+		'last_name',
+		'c_image',
+		'dob',
+		'party_affiliate',
+		'description'
+		]

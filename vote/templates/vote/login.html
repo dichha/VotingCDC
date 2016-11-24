@@ -1,7 +1,6 @@
 {% extends 'vote/login_base.html' %}
 {% block content %}
-<!doctype html>
-    <body>
+
         
     <div class="container">
         <div class="row">
@@ -23,6 +22,7 @@
 							<button type="submit" value="login" class="btn btn-lg btn-success btn-block">Login</button>
 							<div>
 							    <p>Don't have an account? <a href="{% url 'vote:register' %}" class="link">Register Now</a></p>
+                                {{request.user.username}}
 							</div>
                         </form>
                     </div>
@@ -30,6 +30,5 @@
             </div>
         </div>
     </div>
-    </body>
-</html>
+
 {% endblock %}
