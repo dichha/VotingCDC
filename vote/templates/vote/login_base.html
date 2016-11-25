@@ -38,8 +38,23 @@
         <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'vote:welcome_user' username %}">{{user.get_username|title}}</a></li>
+        <li><a href="{% url 'vote:logout' %}">Logout  </a></li>
+        {% elif username != ""%}
+            {% if username != "election" %}
+
+                <li><a href="{% url 'vote:welcome_user' username %}">{{username|title}} </a></li>
+            {% else %}
+            <li><a href="{% url 'vote:welcome_staff' username %}">{{username|title}} </a></li>
+            {% endif %}
+
+        <li><a href="{% url 'vote:logout' %}">Logout</a></li>
+        {% else %}
+
         <li><a href="{% url 'vote:register' %}">Signup</a></li>
         <li><a href="{% url 'vote:login' %}">Login</a></li>
+    {% endif %}
       </ul>
         </div><!--/.navbar-collapse -->
       </div>
