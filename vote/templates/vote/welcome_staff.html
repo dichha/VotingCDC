@@ -1,28 +1,7 @@
-{% extends 'vote/login_base.html' %}
+{% extends 'vote/base_staff.html' %}
 {% block content %}
+	<h1 class="login"> Hello {{username|title}},</h1>	
+	<p>Welcome to your staff page </p>
 
-<div class="container">
-    <div class="col-md-2">
-    <table class="table">
-    	<thead><tr><td>Features</tr></td></thead>
-    	<tbody>
-    		<tr class="success"><td><a href="{% url 'vote:post_candidates' %}">Create Candidate</a></td></tr>
-    		<tr class="danger"><td><a href="{% url 'vote:candidates_list' %}">View/Edit candidates</a></td></tr>
-    		<tr class="info"><td><a href="">Create Election Poll</a></td></tr>
-    	</tbody>
-    	
-    </table>
-   </div>
-    <div class="col-md-8">
-		<h1 class="login"> Hello {{username}}</h1>	
-		<p>Welcome to your staff page </p>
-
-		
-	</div>
-    
-    <div class="col-md-2"> 
-    </div>
-
-</div>
 
 {% endblock %}

@@ -113,8 +113,11 @@ def post_candidates(request):
 			messages.success(request, "Successfully created!")
 			#print(candidate.get_absolute_url())
 			#return HttpResponseRedirect(candidate.get_absolute_url())
+			context = {
+			'button_action':'Update',
+			}
 		
-			return redirect("/candidates_detail/%s/" % candidate.c_id)
+			return redirect("/candidates_detail/%s/" % candidate.c_id, context)
 		else: 
 			print("form is not valid")
 
@@ -125,7 +128,9 @@ def post_candidates(request):
 		username=""
 		context={
 			'form':form,
-			'username': user_name
+			'username': user_name,
+			'button_action': 'Post' 
+
 		}
 	return render(request, 'vote/post_candidates.html', context)
 
@@ -147,12 +152,54 @@ def candidates_detail(request, c_id):
 	return render(request, 'vote/candidates_detail.html', context)
 
 	
+def candidates_update(request, c_id=None):
+	candidate = get_object_or_404(Candidates, pk=c_id)
+	form = CandidatesForm(request.POST or None, instance=candidate )
+	if form.is_valid():
+		candidate = form.save(commit=False)
+		candidate.save()
+		messages.success(request, "Successfully updated!")
+		return redirect("/candidates_detail/%s/" % candidate.c_id)
+
+	user_name = get_username(request)
+
+	context = {
+	'username':user_name,
+	'form': form 
+	}
+	return render(request, 'vote/post_candidates.html', context)
 
 
 
+def get_username(request):
+	if 'user_name' in request.session:
+		user_name = request.session['user_name']
+		return user_name
+	else: 
+		user_name = ""
+		return user_name
 
+def candidate_delete_confirmation(request, c_id=None):
+	user_name=get_username(request)
+	candidate = get_object_or_404(Candidates, pk=c_id)
+	context={
+	'username': user_name,
+	'candidate': candidate,
+	}
+	return render(request, 'vote/candidate_delete_confirmation.html', context)
 
+def candidate_deleted(request, c_id=None):
+	candidate = get_object_or_404(Candidates, pk=c_id)
+	first_name = candidate.first_name
+	middle_name = candidate.middle_name
+	last_name = candidate.last_name
+	candidate.delete()
+	user_name = get_username(request)
+	context = {
+	'first_name': first_name,
+	'middle_name': middle_name,
+	'last_name': last_name,
+	'username': user_name,
+	}
 
-
-
-	
+	return render(request, 'vote/candidate_delete_success.html', context)

@@ -1,18 +1,5 @@
-{% extends 'vote/login_base.html' %}
-
-<!-- TODO: redirect to user or admin through landing page -->
+{% extends 'vote/base_user.html' %}
 {% block content %}
- <div class="container">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-8">
-		<h1 class="login"> Hello {{username|title}} </h1>	
+		<h1 class="login"> Hello {{username|title}}, </h1>	
 		<p>Welcome to your page </p>
-	
-	</div>
-    
-    <div class="col-md-2"> 
-    </div>
-
-</div>
 {% endblock %}

@@ -12,6 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <style>
+        body {
+            padding-bottom: 20px;
+        }
+    </style>
     <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/main.css'%}">
 
@@ -22,7 +27,7 @@
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="{% static 'js/vendor/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/main.js'%}"></script>
-</head>   
+
     <!--Navbar-->
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
@@ -40,27 +45,43 @@
 
       {% if user.is_authenticated %}
         <li><a href="{% url 'vote:welcome_user' username %}">{{user.get_username|title}}</a></li>
-        <li><a href="{% url 'vote:logout' %}">Logout  </a></li>
+        <li><a href="{% url 'vote:logout' %}">Logout</a></li>
         {% elif username != ""%}
-            {% if username != "election" %}
-
-                <li><a href="{% url 'vote:welcome_user' username %}">{{username|title}} </a></li>
-            {% else %}
-            <li><a href="{% url 'vote:welcome_staff' username %}">{{username|title}} </a></li>
-            {% endif %}
-
+            <li><a href="{% url 'vote:welcome_user' username %}">{{ username|title}} </a></li>
         <li><a href="{% url 'vote:logout' %}">Logout</a></li>
         {% else %}
 
         <li><a href="{% url 'vote:register' %}">Signup</a></li>
         <li><a href="{% url 'vote:login' %}">Login</a></li>
-    {% endif %}
+        {% endif %}
       </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
+</head>
+<body>
+<div class="container">
     
-	{% block content %}
-	{% endblock %}
+	<div class="col-md-2">
+    <table class="table">
+        <thead><tr><td>Features</tr></td></thead>
+        <tbody>
+            <tr class="success"><td><a href="">Your Profile</a></td></tr>
+            <tr class="danger"><td><a href="">View/Edit Profile</a></td></tr>
+            <tr class="info"><td><a href="">Current Polls</a></td>
+             <tr class="success"><td><a href="">Past Polls</a></td></tr></tr>
+        </tbody>
+        
+    </table>
+   </div>
+    <div class="col-md-8">
+    {% block content %}
+    {% endblock %}
+    </div>
+    
+    <div class="col-md-2"> 
+    </div>
+</div>
+</body>
 
 </html>

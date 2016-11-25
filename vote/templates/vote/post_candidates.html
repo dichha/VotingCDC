@@ -1,36 +1,39 @@
-{% extends 'vote/base.html' %}
+{% extends 'vote/base_staff.html' %}
 {% block content %}     
-    <div class="container">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8">
+    
+    <h3>Create a Candidate</h3>
 
-            <div class="row">
-
-                <div class="col-md-3">
-                </div>
-                    <div class="col-md-6">
-                    <div class="panel-heading">
-                        <h3>Create a Candidate</h3>
-                    </div>
-                		<form method="POST" clsss="post-form" enctype="multipart/form-data">
-                            {% csrf_token %}
-                           <p>
-                            <table>
-                            {{form.as_p}}
-                            </table>
-                            <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Create</button>
-                        </form>
-                    </div>
-                <div class="col-md-3">
-                
-                </div>
-            </div>
-        </div>
+	<form method="POST" clsss="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
         
-        <div class="col-md-2"> 
-        </div>
+        {{form.as_p}}
+        
 
-    </div>
+
+        {% if button_action == 'Post' %}
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Create</button>
+            </div>
+           
+            <div class="col-md-8">
+            </div>
+            
+        </div>
+        {% else %}
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Update</button>
+            </div>
+            <div class="col-md-8">    
+            </div>
+            
+        </div>
+         
+
+        {% endif %}
+    </form>
+
 
 {%endblock%}

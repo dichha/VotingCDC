@@ -1,44 +1,37 @@
-{% extends 'vote/base.html' %}
+{% extends 'vote/base_staff.html' %}
 {% block content %}        
-    <div class="container">
-        <div class="col-md-2">
+
+     {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+            <p {% if message.tags == "success" %} class="alert alert-success" class="{{ message.tags }}"{% endif %}> {{message}} </p>
+
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="panel-heading">
+            <h3>{{candidate_info.first_name}} {{candidate_info.middle_name}}
+            {{candidate_info.last_name}}</h3>
+            
         </div>
-        <div class="col-md-8">
-
-            <div class="row">
-
-                <div class="col-md-3">
-                </div>
-                    <div class="col-md-6">
-                     {% if messages %}
-                            <ul class="messages">
-                            {% for message in messages %}
-                            <p {% if message.tags == "success" %} class="alert alert-success" class="{{ message.tags }}"{% endif %}> {{message}} </p>
-
-                            {% endfor %}
-                            </ul>
-                        {% endif %}
-                        <div class="panel-heading">
-                            <h3>{{candidate_info.first_name}} 
-                            {{candidate_info.last_name}}</h3>
-                            
-                        </div>
-                        <img src="{{candidate_info.c_image.url}}" class="img-responsive">
-                        <p><b>Date of birth: </b> {{candidate_info.dob}}</p>
-                        <p><b>Party affiliation: </b>{{candidate_info.party_affiliate}}
-
-                        <p><b>Biography: </b>{{candidate_info.description}}</p>
-                    
-                    </div>
-                <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-8" style="height:250px; width: 200px">
+            <img src="{{candidate_info.c_image.url}}" class="img-responsive">
+            </div>
+            <div class="col-md-4">
+            <p><b>Date of birth: </b> {{candidate_info.dob}}</p>
+            <p><b>Party affiliation: </b>{{candidate_info.party_affiliate}}
                 
-                </div>
             </div>
         </div>
-        
-        <div class="col-md-2"> 
+        <div>
+            <p><b>Biography: </b>{{candidate_info.description}}</p>
         </div>
+        <div>
+            <p><span><button type="button" class="btn btn-info"><a href="{% url 'vote:candidates_update' candidate_info.c_id %}" style="color:#ffffff">Update</a></button> &nbsp; &nbsp; <button type="button" class="btn btn-danger"><a href="{% url 'vote:candidate_delete_confirmation' candidate_info.c_id %}" style="color:#ffffff">Delete</a></button></span></p>
+        </div>
+                   
+            
 
-    </div>
 
 {%endblock%}
