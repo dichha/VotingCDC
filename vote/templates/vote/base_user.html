@@ -44,10 +44,10 @@
       <ul class="nav navbar-nav navbar-right">
 
       {% if user.is_authenticated %}
-        <li><a href="{% url 'vote:welcome_user' username %}">{{user.get_username|title}}</a></li>
+        <li><a href="{% url 'vote:welcome_user' u_id %}">{{user.get_username|title}}</a></li>
         <li><a href="{% url 'vote:logout' %}">Logout</a></li>
         {% elif username != ""%}
-            <li><a href="{% url 'vote:welcome_user' username %}">{{ username|title}} </a></li>
+            <li><a href="{% url 'vote:welcome_user' u_id %}">{{ username|title}} </a></li>
         <li><a href="{% url 'vote:logout' %}">Logout</a></li>
         {% else %}
 
@@ -66,8 +66,8 @@
     <table class="table">
         <thead><tr><td>Features</tr></td></thead>
         <tbody>
-            <tr class="success"><td><a href="">Your Profile</a></td></tr>
-            <tr class="danger"><td><a href="">View/Edit Profile</a></td></tr>
+            <tr class="success"><td><a href="{% url 'vote:user_info' u_id %}"> View Your Profile</a></td></tr>
+            <tr class="danger"><td><a href="{% url 'vote:user_info_update' u_id %}">Edit Profile</a></td></tr>
             <tr class="info"><td><a href="">Current Polls</a></td>
              <tr class="success"><td><a href="">Past Polls</a></td></tr></tr>
         </tbody>

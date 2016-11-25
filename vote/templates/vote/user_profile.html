@@ -1,0 +1,23 @@
+{% extends 'vote/base_user.html' %}
+{% block content %}
+		 	
+		 {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+            <p {% if message.tags == "success" %} class="alert alert-success" class="{{ message.tags }}"{% endif %}> {{message}} </p>
+
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="panel-heading">
+            <h3>{{user_info.first_name}}, your profile </h3>
+            
+        </div>
+        <div>
+           <p><b>First name: </b>{{user_info.first_name}}</p>
+           <p><b>Last name: </b>{{user_info.last_name}}</p>
+           <p><b>Username: </b>{{user_info.username}}</p>
+           <p><b>Email: </b></b>{{user_info.email}}</p>
+        </div>
+                   
+{% endblock %}

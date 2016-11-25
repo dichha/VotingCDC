@@ -4,6 +4,7 @@ from django.contrib.auth import(
 	get_user_model,
 	login,
 	logout)
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.sessions.models import Session
 from .forms import UserLoginForm, UserRegistrationForm, CandidatesForm
@@ -12,13 +13,14 @@ from .models import Candidates
 
 # Create your views here.
 def landing_view(request):
-	if 'user_name' in request.session:
-		user_name = request.session['user_name']
-	else: 
-		user_name = ""
+	user_name = get_username(request)
+	u_id = get_uid(request)
+	context = {
+	'username': user_name,
+	'u_id': u_id,
+	}
 
-	return render(request, 'vote/landing_page.html', {
-		'username':user_name})
+	return render(request, 'vote/landing_page.html', context)
 
 def login_view(request):
 	title='Login'
@@ -29,6 +31,9 @@ def login_view(request):
 		password = form.cleaned_data.get('password')
 		user = authenticate(username=username, password=password)
 		request.session['user_name'] = user.username
+		request.session['u_id'] = user.pk
+		u_id = user.pk
+		#print("primary key :" + str(u_id))
 		if (user.is_staff):
 			login(request, user)
 			#return render(request, 'vote/welcome_staff.html', {'username':username})
@@ -37,7 +42,7 @@ def login_view(request):
 
 		#print(request.user.is_authenticated())
 		#return render(request,'vote/welcome.html', {'username':username})
-		return redirect('/user/%s'% user.username)
+		return redirect('/user/%s'% u_id)
 
 
 
@@ -67,8 +72,15 @@ def staff_view(request, username):
 	}
 	return render(request, 'vote/welcome_staff.html', context)
 
-def user_view(request, username):
-	return render(request, 'vote/welcome_users.html', {'username':username})
+def user_view(request, u_id):
+	user = get_object_or_404(User, pk=u_id)
+	username = user.username
+	u_id = user.pk
+	context = {
+	'username':username,
+	'u_id': u_id
+	}
+	return render(request, 'vote/welcome_users.html', context)
 
 
 
@@ -170,6 +182,42 @@ def candidates_update(request, c_id=None):
 	}
 	return render(request, 'vote/post_candidates.html', context)
 
+def user_info_update(request, u_id=None):
+	user = get_object_or_404(User, pk=u_id)
+	form = UserRegistrationForm(request.POST or None, instance=user)
+	if form.is_valid():
+		user = form.save(commit=False)
+		user.save()
+		messages.success(request, "Successfully updated!")
+		return redirect("/user_info/%s/" % u_id)
+	user_name = get_username(request)
+	title = "Register"
+
+	context = {
+	'username':user_name,
+	'form':form,
+	'title': title,
+	'u_id': u_id
+	}
+	return render(request, 'vote/registration_form.html', context)
+
+def user_info(request, u_id):
+	user_info = get_object_or_404(User, pk=u_id)
+
+	context={
+		'u_id': u_id,
+		'user_info': user_info,
+		'username': user_info.username,
+	}
+	return render(request, 'vote/user_profile.html', context)
+
+
+def get_uid(request):
+	if 'u_id' in request.session:
+		u_id = request.session['u_id']
+		return u_id
+	else:
+		return None
 
 
 def get_username(request):

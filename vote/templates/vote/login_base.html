@@ -39,12 +39,12 @@
       <ul class="nav navbar-nav navbar-right">
 
       {% if user.is_authenticated %}
-        <li><a href="{% url 'vote:welcome_user' username %}">{{user.get_username|title}}</a></li>
+        <li><a href="{% url 'vote:welcome_user' u_id %}">{{user.get_username|title}}</a></li>
         <li><a href="{% url 'vote:logout' %}">Logout  </a></li>
         {% elif username != ""%}
             {% if username != "election" %}
 
-                <li><a href="{% url 'vote:welcome_user' username %}">{{username|title}} </a></li>
+                <li><a href="{% url 'vote:welcome_user' u_id %}">{{username|title}} </a></li>
             {% else %}
             <li><a href="{% url 'vote:welcome_staff' username %}">{{username|title}} </a></li>
             {% endif %}
