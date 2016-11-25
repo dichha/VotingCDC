@@ -85,12 +85,13 @@ def register_view(request):
 		login(request, user)
 		return render(request,'vote/welcome_users.html', {'username':user.username})
 
-	
+	user_name = get_username(request)
 
 
 	context={
 		'form': form, 
 		'title': title,
+		'username': user_name
 	}
 
 	return render(request, 'vote/registration_form.html', context)
