@@ -55,7 +55,8 @@
         <tbody>
             <tr class="success"><td><a href="{% url 'vote:post_candidates' %}">Create Candidate</a></td></tr>
             <tr class="danger"><td><a href="{% url 'vote:candidates_list' %}">View/Edit candidates</a></td></tr>
-            <tr class="info"><td><a href="">Create Election Poll</a></td></tr>
+            <tr class="info"><td><a href="{% url 'vote:post_election' %}">Create Election Poll</a></td></tr>
+            <tr class="success"><td><a href="{% url 'vote:elections_list' %}">View/Edit Election Poll/s</a></td></tr>
         </tbody>
         
     </table>

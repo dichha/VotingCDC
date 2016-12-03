@@ -26,6 +26,7 @@ SECRET_KEY = 'urht3nl_^os=g8b3=v4w_dm%dpf#wblh(w4%7kicnijdzp9k+t'
 DEBUG = True
 
 
+
 ALLOWED_HOSTS = []
 
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vote',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
@@ -111,7 +113,7 @@ TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
