@@ -3,7 +3,7 @@
 <h4>Are you sure want to delete candidate <b>{{candidate.first_name}} {{candidate.middle_name}} {{candidate.last_name}}</b>?</h4>
 <div class="row">
 	<div class="col-md-4">
-		<p><span><button type="button" class="btn btn-danger"><a href="{% url 'vote:candidate_deleted' candidate.c_id %}" style="color:#ffffff">Yes</a></button> &nbsp; &nbsp; <button type="button" class="btn btn-info"><a href="" style="color:#ffffff">No</a></button></span></p>
+		<p><span><button type="button" class="btn btn-danger"><a href="{% url 'vote:candidate_deleted' candidate.c_id %}" style="color:#ffffff">Yes</a></button> &nbsp; &nbsp; <button type="button" class="btn btn-info"><a href="{% url 'vote:candidates_detail' candidate.c_id %}" style="color:#ffffff">No</a></button></span></p>
 	</div>
 	<div class="col-md-8">
 		

@@ -3,7 +3,7 @@ from vote.views import (
 	landing_view, login_view, register_view, logout_view, post_candidates, candidates_detail, 
 	staff_view, user_view, candidates, candidates_update, candidate_deleted,
 	candidate_delete_confirmation,user_info,user_info_update, view_candidates,
-	post_election,election_detail, elections, election_update)
+	post_election,election_detail, elections, election_update, view_candidates_detail)
 	# user_results_view, user_polls_view)
 
 from django.conf import settings 
@@ -29,7 +29,8 @@ urlpatterns = [
 	url(r'^admin/elections_form_list/$', elections, name="elections_list" ),
 	url(r'^user/(?P<u_id>\d+)/profile/$', user_info, name="user_info"),
 	url(r'^user/(?P<u_id>\d+)/edit/$', user_info_update, name="user_info_update"),
-	url(r'^user/(?P<u_id>\d+)/view_candidates/$', view_candidates, name='view_candidates')
+	url(r'^user/(?P<u_id>\d+)/view_candidates/$', view_candidates, name='view_candidates'),
+	url(r'^user/(?P<u_id>\d+)/candidates_detail/(?P<c_id>\d+)/$', view_candidates_detail, name='view_candidates_detail')
 	# url(r'^user/(?P<u_id>\d+)/results/$', user_results_view, name="user_results"),
 	# url(r'^user/polls/$', user_polls_view, name="user_polls")
 

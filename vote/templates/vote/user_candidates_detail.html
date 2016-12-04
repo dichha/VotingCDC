@@ -1,4 +1,4 @@
-{% extends 'vote/base_staff.html' %}
+{% extends 'vote/base_user.html' %}
 {% block content %}        
     {% if messages %}
         <ul class="messages">
@@ -19,9 +19,7 @@
             <p><b>Party affiliation: </b>{{candidate_info.party_affiliate}}
             <p><b>Date of birth: </b> {{candidate_info.dob}}</p>
             <p><b>Biography: </b>{{candidate_info.description}}</p>
-            <div class='text-center'>
-                <p><span><button type="button" class="btn btn-info"><a href="{% url 'vote:candidates_update' candidate_info.c_id %}" style="color:#ffffff">Update</a></button> &nbsp; &nbsp; <button type="button" class="btn btn-danger"><a href="{% url 'vote:candidate_delete_confirmation' candidate_info.c_id %}" style="color:#ffffff">Delete</a></button></span></p>
-            </div>        
+            <div class='text-center'><button type="button" class="btn btn-info"><a href="{% url 'vote:view_candidates' u_id %}" style="color:#ffffff">Return</a></button></div>
         </div>
     </div>
 {%endblock%}

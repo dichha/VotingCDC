@@ -138,6 +138,7 @@ def post_candidates(request):
 			'button_action': 'Post' 
 		}
 	return render(request, 'vote/post_candidates.html', context)
+	
 def post_election(request):
 	user_name = get_username(request)
 	can_objs = Candidates.objects.all()
@@ -165,6 +166,7 @@ def post_election(request):
 
 		}
 	return render(request, 'vote/post_election.html', context)# {'username':user_name,'form':form,'button_action': 'Post'})
+	
 def election_detail(request, e_id):
 	user_name = get_username(request)
 	election_info = get_object_or_404(Election_Info, pk=e_id)
@@ -185,8 +187,6 @@ def election_detail(request, e_id):
 		'name_list': name_list
 	}
 	return render(request, 'vote/election_detail.html', context)
-
-
 
 def candidates_detail(request, c_id):
 
@@ -306,10 +306,6 @@ def view_candidates(request, u_id):
 	user = get_object_or_404(User, pk=u_id)
 	username = user.username
 	u_id = user.pk
-	# if 'user_name' in request.session:
-	# 	user_name = request.session['user_name']
-	# else: 
-	# 	user_name = ""
 	candidates = Candidates.objects.all()
 	context = {
 	'candidates': candidates,
@@ -319,9 +315,17 @@ def view_candidates(request, u_id):
 	}
 	return render(request, 'vote/user_candidates_list.html', context)
 
-# def user_results_view(request, u_id)
-
-# return
+def view_candidates_detail(request, u_id, c_id):
+	user = get_object_or_404(User, pk=u_id)
+	username = user.username
+	u_id = user.pk
+	candidate_info = get_object_or_404(Candidates, pk=c_id)
+	context = {
+	'candidate_info':candidate_info,
+	'username':username,
+	'u_id': u_id
+	}
+	return render(request, 'vote/user_candidates_detail.html', context)
 
 # def user_polls_view(request)
 

@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vote', '0001_added_image_field_to_candidates_model'),
+        ('vote', '0001_added candidates and election_info table'),
     ]
 
     operations = [
