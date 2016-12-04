@@ -5,24 +5,20 @@
 	<title>voteFSE</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://use.fontawesome.com/a00f86850a.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    
+	  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <!--<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css'%}">-->
     <link rel="stylesheet" href="{% static 'css/main.css'%}">
-
     <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
     <script src="{% static 'js/vendor/bootstrap.min.js'%}"></script>
     <script src="{% static 'js/main.js'%}"></script>
-
+</head>
     <!--Navbar-->
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
@@ -33,36 +29,34 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'vote:landing' %}">Election Webapp</a>
+          <a class="navbar-brand" href="{% url 'vote:welcome_staff' username %}">Election Webapp</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="{% url 'vote:welcome_staff' username %}">{{ username|title}} </a></li>
+        <!--<li><a href="{% url 'vote:welcome_staff' username %}">{{ username|title}} </a></li>-->
          
-
         <li><a href="{% url 'vote:logout' %}">Logout  </a></li>
       </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
-</head>
+
 <body>
 <div class="container">
     <div class="col-md-2">
     <table class="table">
-        <thead><tr><td>Features</tr></td></thead>
         <tbody>
-            <tr class="success"><td><a href="{% url 'vote:post_candidates' %}">Create Candidate</a></td></tr>
-            <tr class="danger"><td><a href="{% url 'vote:candidates_list' %}">View/Edit candidates</a></td></tr>
-            <tr class="info"><td><a href="">Create Election Poll</a></td></tr>
+            <tr><td><a href="{% url 'vote:post_candidates' %}">Create Candidate</a></td></tr>
+            <tr><td><a href="{% url 'vote:candidates_list' %}">View/Edit candidates</a></td></tr>
+            <tr><td><a href="">Create Election Poll</a></td></tr>
         </tbody>
-        
     </table>
-   </div>
+    </div>
+    
     <div class="col-md-8">
-    {% block content %}
-    {% endblock %}
+      {% block content %}
+      {% endblock %}
     </div>
     
     <div class="col-md-2"> 

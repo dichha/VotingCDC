@@ -1,5 +1,105 @@
 {% extends 'vote/base_user.html' %}
 {% block content %}
-		<h1 class="login"> Hello {{username|title}}, </h1>	
-		<p>Welcome to your page </p>
+  <h2>Dashboard</h2>
+	<!--<h2 class="login"> Hello {{username|title}}, </h2>	-->
+	<!--<p>Welcome to your page </p>-->
+	
+    <div>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Active Polls</strong></h3>
+        </div>
+        <div class="panel-body">
+                <div>
+                  <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                    <li class="active"><a href="#random2016" data-toggle="tab">2016 Random Election</a></li>
+                    <li><a href="#random2018" data-toggle="tab">2018 Random Election</a></li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="random2016">
+                      <p>
+                        <p>
+                          Have you voted? Click the button below to get started.
+                          <p><button type="button" class="btn btn-primary">Vote</button><p>
+                        </p>
+                      </p>
+                    </div>
+                    <div class="tab-pane fade" id="random2018">
+                      <p>
+                        <p>
+                          Have you voted? Click the button below to get started.
+                          <p><button type="button" class="btn btn-primary">Vote</button><p>
+                        </p>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Upcoming Polls</strong></h3>
+        </div>
+        <div class="panel-body">
+          <div>
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <li class="active"><a href="#gubernatorial2018" data-toggle="tab">2018 Gubernatorial Election</a></li>
+              <li><a href="#presidential2020" data-toggle="tab">2020 Presidential Election</a></li>
+              <li><a href="#presidential2024" data-toggle="tab">2024 Presidential Election</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="gubernatorial2018">
+                <p>
+                  <p>
+                    Have you voted? Click the button below to get started.
+                    <p><button type="button" class="btn btn-primary disabled">Vote</button><p>
+                  </p>
+                </p>
+              </div>
+              <div class="tab-pane fade" id="presidential2020">
+                  <p>
+                    Have you voted? Click the button below to get started.
+                    <p><button type="button" class="btn btn-primary disabled">Vote</button></p>
+                  </p>
+              </div>
+              <div class="tab-pane fade" id="presidential2024">
+                  <p>
+                    Have you voted? Click the button below to get started.
+                    <p><button type="button" class="btn btn-primary disabled">Vote</button></p>
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Inactive Polls</strong></h3>
+        </div>
+        <div class="panel-body">
+          <div>
+            <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <li class="active"><a href="#presidential2016" data-toggle="tab">2016 Presidential Election</a></li>
+              <li><a href="#presidential2012" data-toggle="tab">2012 Presidential Election</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="presidential2016">
+                <p>
+                  View the 2016 Presidential Election results <a href="#"><strong>here</strong></a>.
+                </p>
+              </div>
+              <div class="tab-pane fade" id="presidential2012">
+                <p>
+                  View the 2012 Presidential Election results <a href="#"><strong>here</strong></a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 {% endblock %}

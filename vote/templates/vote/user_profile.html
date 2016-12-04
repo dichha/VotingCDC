@@ -10,14 +10,14 @@
             </ul>
         {% endif %}
         <div class="panel-heading">
-            <h3>{{user_info.first_name}}, your profile </h3>
+            <h2>My Information </h2>
             
-        </div>
-        <div>
-           <p><b>First name: </b>{{user_info.first_name}}</p>
-           <p><b>Last name: </b>{{user_info.last_name}}</p>
-           <p><b>Username: </b>{{user_info.username}}</p>
-           <p><b>Email: </b></b>{{user_info.email}}</p>
+            <div>
+               <p><b>First name: </b>{{user_info.first_name}}</p>
+               <p><b>Last name: </b>{{user_info.last_name}}</p>
+               <p><b>Username: </b>{{user_info.username}}</p>
+               <p><b>Email: </b></b>{{user_info.email}}</p>
+            </div>
         </div>
                    
 {% endblock %}

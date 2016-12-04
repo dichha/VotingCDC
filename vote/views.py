@@ -19,7 +19,6 @@ def landing_view(request):
 	'username': user_name,
 	'u_id': u_id,
 	}
-
 	return render(request, 'vote/landing_page.html', context)
 
 def login_view(request):
@@ -38,16 +37,10 @@ def login_view(request):
 			login(request, user)
 			#return render(request, 'vote/welcome_staff.html', {'username':username})
 			return redirect('/admin/staff/%s'% user.username)
-
-
 		#print(request.user.is_authenticated())
 		#return render(request,'vote/welcome.html', {'username':username})
 		return redirect('/user/%s'% u_id)
-
-
-
 	return render(request,'vote/login.html', {'form':form, 'title': title, 'username': username})
-
 
 def candidates(request):
 	if 'user_name' in request.session:
@@ -62,13 +55,11 @@ def candidates(request):
 	}
 	return render(request, 'vote/candidates_list.html', context)
 
-
 def staff_view(request, username):
 	form = CandidatesForm()
 	context = {
 	'username':username,
 	'form': form,
-
 	}
 	return render(request, 'vote/welcome_staff.html', context)
 
@@ -82,8 +73,6 @@ def user_view(request, u_id):
 	}
 	return render(request, 'vote/welcome_users.html', context)
 
-
-
 def register_view(request):
 	#print(request.user.is_authenticated())
 	title = "Register"
@@ -96,16 +85,12 @@ def register_view(request):
 		user.save()
 		login(request, user)
 		return render(request,'vote/welcome_users.html', {'username':user.username})
-
 	user_name = get_username(request)
-
-
 	context={
 		'form': form, 
 		'title': title,
 		'username': user_name
 	}
-
 	return render(request, 'vote/registration_form.html', context)
 
 def logout_view(request):
@@ -129,13 +114,9 @@ def post_candidates(request):
 			context = {
 			'button_action':'Update',
 			}
-		
 			return redirect("/candidates_detail/%s/" % candidate.c_id, context)
 		else: 
 			print("form is not valid")
-
-
-	
 	else:
 		form = CandidatesForm()
 		username=""
@@ -143,7 +124,6 @@ def post_candidates(request):
 			'form':form,
 			'username': user_name,
 			'button_action': 'Post' 
-
 		}
 	return render(request, 'vote/post_candidates.html', context)
 
@@ -158,10 +138,7 @@ def candidates_detail(request, c_id):
 	context = {
 	'candidate_info':candidate_info,
 	'username': user_name
-
 	}
-	
-
 	return render(request, 'vote/candidates_detail.html', context)
 
 	
@@ -192,18 +169,16 @@ def user_info_update(request, u_id=None):
 		return redirect("/user_info/%s/" % u_id)
 	user_name = get_username(request)
 	title = "Register"
-
 	context = {
 	'username':user_name,
 	'form':form,
 	'title': title,
 	'u_id': u_id
 	}
-	return render(request, 'vote/registration_form.html', context)
+	return render(request, 'vote/user_update_form.html', context)
 
 def user_info(request, u_id):
 	user_info = get_object_or_404(User, pk=u_id)
-
 	context={
 		'u_id': u_id,
 		'user_info': user_info,
@@ -211,14 +186,12 @@ def user_info(request, u_id):
 	}
 	return render(request, 'vote/user_profile.html', context)
 
-
 def get_uid(request):
 	if 'u_id' in request.session:
 		u_id = request.session['u_id']
 		return u_id
 	else:
 		return None
-
 
 def get_username(request):
 	if 'user_name' in request.session:
@@ -250,5 +223,29 @@ def candidate_deleted(request, c_id=None):
 	'last_name': last_name,
 	'username': user_name,
 	}
-
 	return render(request, 'vote/candidate_delete_success.html', context)
+
+def view_candidates(request, u_id):
+	user = get_object_or_404(User, pk=u_id)
+	username = user.username
+	u_id = user.pk
+	# if 'user_name' in request.session:
+	# 	user_name = request.session['user_name']
+	# else: 
+	# 	user_name = ""
+	candidates = Candidates.objects.all()
+	context = {
+	'candidates': candidates,
+	'title': 'Candidates list',
+	'username':username,
+	'u_id': u_id
+	}
+	return render(request, 'vote/user_candidates_list.html', context)
+
+# def user_results_view(request, u_id)
+
+# return
+
+# def user_polls_view(request)
+
+# return
