@@ -48,8 +48,9 @@
     <table class="table">
         <tbody>
             <tr><td><a href="{% url 'vote:post_candidates' %}">Create Candidate</a></td></tr>
-            <tr><td><a href="{% url 'vote:candidates_list' %}">View/Edit candidates</a></td></tr>
-            <tr><td><a href="">Create Election Poll</a></td></tr>
+            <tr><td><a href="{% url 'vote:candidates_list' %}">View/Edit Candidates</a></td></tr>
+            <tr><td><a href="{% url 'vote:post_election' %}">Create Election Poll</a></td></tr>
+            <tr><td><a href="{% url 'vote:elections_list' %}">View/Edit Election Polls</a></td></tr>
         </tbody>
     </table>
     </div>

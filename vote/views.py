@@ -7,8 +7,8 @@ from django.contrib.auth import(
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.sessions.models import Session
-from .forms import UserLoginForm, UserRegistrationForm, CandidatesForm
-from .models import Candidates
+from .forms import UserLoginForm, UserRegistrationForm, CandidatesForm, Election_InfoForm
+from .models import Candidates, Election_Info
 
 
 # Create your views here.
@@ -54,6 +54,18 @@ def candidates(request):
 	'username': user_name
 	}
 	return render(request, 'vote/candidates_list.html', context)
+
+
+def elections(request):
+	user_name = get_username(request)
+	elections = Election_Info.objects.all()
+	context  = {
+		'username': user_name,
+		'elections': elections,
+		'title': 'Election Forms'
+	}
+	return render(request, 'vote/election_list.html', context)
+
 
 def staff_view(request, username):
 	form = CandidatesForm()
@@ -126,6 +138,54 @@ def post_candidates(request):
 			'button_action': 'Post' 
 		}
 	return render(request, 'vote/post_candidates.html', context)
+def post_election(request):
+	user_name = get_username(request)
+	can_objs = Candidates.objects.all()
+	
+	if request.method  == 'POST':
+		form = Election_InfoForm(request.POST or None)
+		if form.is_valid():
+			election = form.save(commit=False)
+			election.save()
+			messages.success(request, "Successfully created!")
+			context = {
+				'button_action':'Update',
+			}
+			return redirect("/admin/election_detail/%s/"%election.e_id)
+		else:
+			print("form is not valid")
+	else:
+
+		form = Election_InfoForm()
+		context = {
+			'username':user_name,
+			'form':form,
+			'button_action': 'Post',
+			'can_objs': can_objs
+
+		}
+	return render(request, 'vote/post_election.html', context)# {'username':user_name,'form':form,'button_action': 'Post'})
+def election_detail(request, e_id):
+	user_name = get_username(request)
+	election_info = get_object_or_404(Election_Info, pk=e_id)
+	candidates = election_info.candidates_choice
+	precincts_range = election_info.precincts_range
+	can_objs = Candidates.objects.all()
+	name_list = []
+	for can in can_objs:
+		name = can.first_name +" " +can.last_name
+		c_id = can.c_id
+		name_list.append((name,c_id))
+
+	context = {
+		'username': user_name,
+		'election_info': election_info,
+		'candidates': candidates,
+		'precincts_range': precincts_range,
+		'name_list': name_list
+	}
+	return render(request, 'vote/election_detail.html', context)
+
 
 
 def candidates_detail(request, c_id):
@@ -158,6 +218,23 @@ def candidates_update(request, c_id=None):
 	'form': form 
 	}
 	return render(request, 'vote/post_candidates.html', context)
+
+def election_update(request, e_id=None):
+	election = get_object_or_404(Election_Info, pk=e_id)
+	form = Election_InfoForm(request.POST or None, instance=election )
+	if form.is_valid():
+		election = form.save(commit=False)
+		election.save()
+		messages.success(request, "Successfully updated!")
+		return redirect("/admin/election_detail/%s/" % election.e_id)
+
+	user_name = get_username(request)
+
+	context = {
+	'username':user_name,
+	'form': form 
+	}
+	return render(request, 'vote/post_election.html', context)
 
 def user_info_update(request, u_id=None):
 	user = get_object_or_404(User, pk=u_id)

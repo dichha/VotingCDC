@@ -7,6 +7,7 @@ from django.contrib.auth import(
 from django.contrib.auth.models import User
 from django.forms import widgets
 from .models import Candidates
+from .models import Election_Info
 
 class UserLoginForm(forms.Form):
 	username = forms.CharField()
@@ -73,10 +74,31 @@ class CandidatesForm(forms.ModelForm):
 		#widgets = {'dob': forms.DateInput(attrs={'class': 'datepicker', 'type': 'date'})}
 		fields = [
 		'first_name',
-		'middle_name',
 		'last_name',
 		'c_image',
 		'dob',
 		'party_affiliate',
 		'description'
+		]
+class Election_InfoForm(forms.ModelForm):
+	e_name = forms.CharField(label="Election Name")
+	#e_year = forms.CharField(label="Year")
+	#position = forms.CharField(label="Choose Position")
+	e_description = forms.CharField(widget=forms.Textarea,label="Description")
+	start_date = forms.DateField(input_formats=['%Y-%m-%d', '%m/%d/%Y','%m/%d/%y'])
+	end_date = forms.DateField(input_formats=['%Y-%m-%d', '%m/%d/%Y','%m/%d/%y'])
+	#candidates_choice = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset=Candidates.objects.all())
+
+
+	class Meta:
+		model = Election_Info
+		fields = [
+		'e_name',
+		'e_description',
+		'candidates_choice',
+		'year',
+		'position',
+		'precincts_range',
+		'start_date',
+		'end_date',
 		]
