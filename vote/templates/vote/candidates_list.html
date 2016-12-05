@@ -6,7 +6,7 @@
             <h3>{{title}}</h3>
             {% for candidate in candidates %}
                 <div class="candidateinfo col-md-5">
-                    <img src="{{candidate.c_image.url}}" class="img-responsive center-block">
+                    <img src="{{candidate.c_image.url}}" class="img-responsive center-block" height="256" width="256">
                     <h4 class="text-center"><b>{{candidate.first_name}} {{candidate.middle_name}} {{candidate.last_name}}</b></h4>
                     <p class="text-center"><b>Party Affiliate: </b>{{candidate.party_affiliate}}</p>
                     <p class="text-center"><b>Date of birth: </b> {{candidate.dob}}</p>

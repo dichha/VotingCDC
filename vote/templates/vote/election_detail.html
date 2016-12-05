@@ -45,7 +45,12 @@
         </div>
         
         <div class='text-center'>
-            <p><span><button type="button" class="btn btn-info"><a href="{% url 'vote:election_update' election_info.e_id %}" style="color:#ffffff">Update</a></button> &nbsp; &nbsp; <button type="button" class="btn btn-danger"><a href="" style="color:#ffffff">Delete</a></button></span></p>
+            <p>
+                <span>
+                    <button type="button" class="btn btn-info"><a href="{% url 'vote:election_update' election_info.e_id %}" style="color:#ffffff">Update</a></button> &nbsp; &nbsp; 
+                    <button type="button" class="btn btn-danger"><a href="{% url 'vote:election_delete_confirmation' election_info.e_id %}" style="color:#ffffff">Delete</a></button>
+                </span>
+            </p>
         </div>
     </div>
 {%endblock%}

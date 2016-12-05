@@ -1,0 +1,17 @@
+{% extends 'vote/base_staff.html' %}
+{% block content %}
+<div class="col-md-12 candidateinfo">
+    <h4>Are you sure want to delete <b>{{ title }} </b>?</h4>
+    <div class="row">
+    	<div class="col-md-4">
+    		<p>
+    		    <span>
+    		        <button type="button" class="btn btn-danger"><a href="{% url 'vote:election_deleted' election.e_id %}" style="color:#ffffff">Yes</a></button> &nbsp; &nbsp; 
+    		        <button type="button" class="btn btn-info"><a href="{% url 'vote:election_detail' election.e_id %}" style="color:#ffffff">No</a></button>
+    	        </span>
+            </p>
+    	</div>
+    	<div class="col-md-8"></div>
+    </div>
+</div>
+{% endblock %}

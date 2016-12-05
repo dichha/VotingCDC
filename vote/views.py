@@ -95,6 +95,7 @@ def register_view(request):
 		user.set_password(password)
 		new_user = authenticate(username=user.username, password=password)
 		user.save()
+		user.backend = 'django.contrib.auth.backends.ModelBackend'
 		login(request, user)
 		u_id=user.pk
 		#print("user id = " + str(u_id))
@@ -307,13 +308,13 @@ def candidate_delete_confirmation(request, c_id=None):
 def candidate_deleted(request, c_id=None):
 	candidate = get_object_or_404(Candidates, pk=c_id)
 	first_name = candidate.first_name
-	middle_name = candidate.middle_name
+	# middle_name = candidate.middle_name
 	last_name = candidate.last_name
 	candidate.delete()
 	user_name = get_username(request)
 	context = {
 	'first_name': first_name,
-	'middle_name': middle_name,
+	# 'middle_name': middle_name,
 	'last_name': last_name,
 	'username': user_name,
 	}
@@ -375,6 +376,29 @@ def	user_election_detail(request, u_id, e_id):
 		'name_list': name_list
 	}
 	return render(request, 'vote/user_election_detail.html', context)
+
+def election_delete_confirmation(request, e_id=None):
+	user_name=get_username(request)
+	election = get_object_or_404(Election_Info, pk=e_id)
+	title = election.e_name
+	context={
+		'username': user_name,
+		'election': election,
+		'title' : title
+	}
+	return render(request, 'vote/election_delete_confirmation.html', context)
+
+def election_deleted(request, e_id=None):
+	election = get_object_or_404(Election_Info, pk=e_id)
+	title = election.e_name
+	election.delete()
+	user_name = get_username(request)
+	context = {
+		'username': user_name,
+		'election': election,
+		'title' : title
+	}
+	return render(request, 'vote/election_delete_success.html', context)
 
 def user_vote_success(request, u_id, e_id):
 
