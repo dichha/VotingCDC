@@ -1,19 +1,19 @@
-{% extends 'vote/base_staff.html' %}
+{% extends 'vote/base_user.html' %}
 {% block content %}        
     <div class="container">
     <div class="col-md-12">
          <h3>{{title}}</h3>
-       {% for election in elections %}
+         <!--{% for election in election_info %}
          <div class="col-md-4">
           
           <p><b>Name: </b> {{election.e_name}}</p>
         <p><b>Description </b> {{election.e_description}}</p>
           
             
-            <button type="sumbit" type="button" class="btn btn-info"><a href="{% url 'vote:election_detail' election.e_id %}" style="color:#ffffff">More</a></button>
+            <button type="sumbit" type="button" class="btn btn-info"><a href="" style="color:#ffffff">More</a></button>
              
          </div>
-           {% endfor %}
+           {% endfor %}-->
           
          
           

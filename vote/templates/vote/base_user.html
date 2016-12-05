@@ -39,10 +39,10 @@
           <!--</ul>-->
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-          <li><a href="{% url 'vote:user_info_update' u_id %}">Account </a></li>
+          <li><a href="{% url 'vote:user_info_update' u_id %}">Hi {{username|title}}! </a></li>
           <li><a href="{% url 'vote:logout' %}">Logout</a></li>
         {% elif username != ""%}
-          <li><a href="{% url 'vote:user_info_update' u_id %}">Account </a></li>
+          <li><a href="{% url 'vote:user_info_update' u_id %}">Hi {{username|title}}! </a></li>
           <li><a href="{% url 'vote:logout' %}">Logout</a></li>
         {% else %}
           <li><a href="{% url 'vote:register' %}">Signup</a></li>

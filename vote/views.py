@@ -88,7 +88,7 @@ def user_view(request, u_id):
 def register_view(request):
 	#print(request.user.is_authenticated())
 	title = "Register"
-	form = UserRegistrationForm(request.POST or None, request.FILES or None)
+	form = UserRegistrationForm(request.POST or None)
 	if form.is_valid():
 		user = form.save(commit=False)
 		password = form.cleaned_data.get('password')
@@ -96,7 +96,11 @@ def register_view(request):
 		new_user = authenticate(username=user.username, password=password)
 		user.save()
 		login(request, user)
-		return render(request,'vote/welcome_users.html', {'username':user.username})
+		u_id=user.pk
+		#print("user id = " + str(u_id))
+		
+		return render(request,'vote/welcome_users.html', {'username':user.username, 'u_id':u_id})
+	
 	user_name = get_username(request)
 	context={
 		'form': form, 
@@ -167,6 +171,19 @@ def post_election(request):
 		}
 	return render(request, 'vote/post_election.html', context)# {'username':user_name,'form':form,'button_action': 'Post'})
 	
+
+def user_polls_view(request):
+	election_info = Election_Info.objects.all()
+	user_name = get_username(request)
+	context={
+		'username': user_name,
+		'title': 'Polls',
+		'election_info':election_info
+
+	}
+	return render('vote/users_view_poll.html', context) 
+
+
 def election_detail(request, e_id):
 	user_name = get_username(request)
 	election_info = get_object_or_404(Election_Info, pk=e_id)
@@ -327,6 +344,5 @@ def view_candidates_detail(request, u_id, c_id):
 	}
 	return render(request, 'vote/user_candidates_detail.html', context)
 
-# def user_polls_view(request)
 
-# return
+
