@@ -1,4 +1,4 @@
-{% extends 'vote/base_staff.html' %}
+{% extends 'vote/base_user.html' %}
 {% block content %}        
 
     {% if messages %}
@@ -19,7 +19,7 @@
                  <b>Description: </b></br>
                  <p>{{election_info.e_description}}</p>
                  
-                <span><b>Candidates</b></span>
+                <span><b>Candidates:</b></span>
                 <ul>
                    {% for name, id in name_list %}
                         {% for can in candidates %}
@@ -45,7 +45,7 @@
         </div>
         
         <div class='text-center'>
-            <p><span><button type="button" class="btn btn-info"><a href="{% url 'vote:election_update' election_info.e_id %}" style="color:#ffffff">Update</a></button> &nbsp; &nbsp; <button type="button" class="btn btn-danger"><a href="" style="color:#ffffff">Delete</a></button></span></p>
+            <p><span><button type="button" class="btn btn-info"><a href="{% url 'vote:election_update' election_info.e_id %}" style="color:#ffffff">Vote</a></button> &nbsp; &nbsp;</span></p>
         </div>
     </div>
 {%endblock%}

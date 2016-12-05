@@ -1,6 +1,5 @@
 {% extends 'vote/base_staff.html' %}
 {% block content %}     
-    
     <h3>Create an Election</h3>
 
 	<form method="POST" clsss="post-form" enctype="multipart/form-data">
@@ -8,32 +7,20 @@
         
         {{form.as_p}}
         
-
-
         {% if button_action == 'Post' %}
-        <div class="row">
-            <div class="col-md-4">
-                <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Create</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Create</button>
+                </div>
+                <div class="col-md-8"></div>
             </div>
-           
-            <div class="col-md-8">
-            </div>
-            
-        </div>
         {% else %}
-
-        <div class="row">
-            <div class="col-md-4">
-                <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Update</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" value="login" class="btn btn-lg btn-success btn-block">Update</button>
+                </div>
+                <div class="col-md-8"></div>
             </div>
-            <div class="col-md-8">    
-            </div>
-            
-        </div>
-         
-
         {% endif %}
     </form>
-
-
 {%endblock%}

@@ -327,6 +327,38 @@ def view_candidates_detail(request, u_id, c_id):
 	}
 	return render(request, 'vote/user_candidates_detail.html', context)
 
-# def user_polls_view(request)
+def user_elections(request, u_id):
+	user = get_object_or_404(User, pk=u_id)
+	u_id = user.pk
+	elections = Election_Info.objects.all()
+	context  = {
+		'elections': elections,
+		'u_id': u_id,
+		'title': 'Elections'
+	}
+	return render(request, 'vote/user_election_list.html', context)
+	
+def	user_election_detail(request, u_id, e_id):
+	user = get_object_or_404(User, pk=u_id)
+	u_id = user.pk
+	election_info = get_object_or_404(Election_Info, pk=e_id)
+	candidates = election_info.candidates_choice
+	precincts_range = election_info.precincts_range
+	can_objs = Candidates.objects.all()
+	name_list = []
+	for can in can_objs:
+		name = can.first_name +" " +can.last_name
+		c_id = can.c_id
+		name_list.append((name,c_id))
+	context = {
+		'u_id': u_id,
+		'election_info': election_info,
+		'candidates': candidates,
+		'precincts_range': precincts_range,
+		'name_list': name_list
+	}
+	return render(request, 'vote/user_election_detail.html', context)
 
-# return
+def user_vote_success(request, u_id, e_id):
+
+	return
