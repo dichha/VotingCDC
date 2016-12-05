@@ -344,7 +344,6 @@ def view_candidates_detail(request, u_id, c_id):
 	}
 	return render(request, 'vote/user_candidates_detail.html', context)
 
-<<<<<<< HEAD
 def user_elections(request, u_id):
 	user = get_object_or_404(User, pk=u_id)
 	u_id = user.pk
@@ -380,7 +379,4 @@ def	user_election_detail(request, u_id, e_id):
 def user_vote_success(request, u_id, e_id):
 
 	return
-=======
 
-
->>>>>>> 4be75841522696c0ea1d11ed0fc859a6c9bab70b
