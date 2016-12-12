@@ -10,6 +10,8 @@ from vote.views import (
 from django.conf import settings 
 from django.conf.urls.static import static
 
+from . import views
+
 
 urlpatterns = [
 	url(r'^$', landing_view, name='landing'),
@@ -36,6 +38,12 @@ urlpatterns = [
 	url(r'^user/(?P<u_id>\d+)/election_detail/(?P<e_id>\d+)/', user_election_detail, name='user_election_detail'),
 	url(r'^user/(?P<u_id>\d+)/election_detail/(?P<e_id>\d+)/success', user_vote_success, name='user_vote_success'),
 	# url(r'^user/(?P<u_id>\d+)/results/$', user_results_view, name="user_results"),
+
+	#for voting
+	url(r'^(?P<question_id>\d+)/$', views.detail, name='detail'),
+	url(r'^(?P<question_id>\d+)/results/$', views.results, name='results'),
+	url(r'^(?P<question_id>\d+)/vote/$', views.vote, name='vote'),
+	url(r'^user/(?P<u_id>\d+)/poll_list/$', views.poll_list, name="poll_list"),
 ]
 
 if settings.DEBUG:

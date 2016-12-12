@@ -8,7 +8,74 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.sessions.models import Session
 from .forms import UserLoginForm, UserRegistrationForm, CandidatesForm, Election_InfoForm
-from .models import Candidates, Election_Info
+from .models import Candidates, Election_Info, Question, Choice
+from django.urls import reverse
+
+''' for polling '''
+def detail(request, question_id):
+	user_name = get_username(request)
+	u_id = get_uid(request)
+	question = get_object_or_404(Question, pk=question_id)
+
+	context = {
+	'username': user_name,
+	'u_id': u_id,
+	'question': question,
+	}
+
+	return render(request, 'vote/detail.html', context)
+
+def poll_list(request, u_id):
+	user_name = get_username(request)
+	#u_id = get_uid(request)
+	latest_question_list = Question.objects.order_by('-pub_date')[:5]
+
+
+	context = {
+	'username': user_name,
+	'u_id': u_id,
+	'latest_question_list': latest_question_list,
+	}	
+
+	return render(request, 'vote/poll_list.html',
+		context)
+
+
+def results(request, question_id):
+	#response = "You're looking at the results of question %s."
+	#return HttpResponse(response % question_id)
+	user_name = get_username(request)
+	u_id = get_uid(request)
+	question = get_object_or_404(Question, pk=question_id)
+	context = {
+	'username': user_name,
+	'u_id': u_id,
+	'question': question,
+	}
+
+	return render(request, 'vote/results.html',
+		context)
+
+def vote(request, question_id):
+	#return HttpResponse("You're voting in question %s.")
+	question = get_object_or_404(Question, pk=question_id)
+	try:
+		selected_choice = question.choice_set.get(pk=request.POST['choice'])
+	except (KeyError, Choice.DoesNotExist):
+		return render(request, 'vote/detail.html', {
+			'question': question,
+			'error_message': "You didn't select a choice.",
+			})
+	else:
+		selected_choice.votes += 1
+		selected_choice.save()
+
+		return HttpResponseRedirect(reverse('vote:results', args=(question.id,)))
+
+
+
+
+
 
 
 # Create your views here.
@@ -346,12 +413,15 @@ def view_candidates_detail(request, u_id, c_id):
 
 def user_elections(request, u_id):
 	user = get_object_or_404(User, pk=u_id)
+	latest_question_list = Question.objects.order_by('-pub_date')[:5]
+
 	u_id = user.pk
 	elections = Election_Info.objects.all()
 	context  = {
 		'elections': elections,
 		'u_id': u_id,
-		'title': 'Elections'
+		'title': 'Elections',
+		'latest_question_list': latest_question_list,
 	}
 	return render(request, 'vote/user_election_list.html', context)
 	

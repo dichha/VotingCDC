@@ -60,7 +60,7 @@
                   <tbody>
                     <tr><td><a href="{% url 'vote:user_info' u_id %}"> My Information</a></td></tr>
                     <tr><td><a href="{% url 'vote:user_elections_list' u_id %}">Polls</a></td></tr>
-                    <tr><td><a href="">Results</a></td></tr>
+                    <tr><td><a href="{% url 'vote:poll_list' u_id %}">Results</a></td></tr>
                     <tr><td><a href="{% url 'vote:view_candidates' u_id %}">Candidates</a></td></tr>
                   </tbody>
               </table>

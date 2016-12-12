@@ -1,0 +1,10 @@
+
+<h1>Current Result for {{question.question_text}}</h1>
+<ul>
+	{% for choice in question.choice_set.all %}
+		<li>{{choice.choice_text}} -- {{ choice.votes}}
+		vote{{choice.votes|pluralize}}</li>
+	{%endfor%}
+
+</ul>
+<p>Thank you for the vote!<a href="{% url 'vote:user_elections_list' u_id %}"> Go back to your election page</a></p>

@@ -2,7 +2,21 @@
 {% block content %}        
     <div class="container">
         <div class="col-md-12">
+
             <h3>Polls</h3>
+            {% if latest_question_list %}
+                <ul>
+                {% for question in latest_question_list %}
+                    <li><a href="{% url 'vote:detail' question.id %}">{{question.question_text}}</a></li>
+                {% endfor %}
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+
+
+
+
+
             {% for election in elections %}
                 <div class="col-md-8 candidateinfo">
                 <h4 class='text-center'><b>{{election.e_name}}</b></h4>
