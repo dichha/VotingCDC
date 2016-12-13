@@ -42,10 +42,8 @@ class Candidates(models.Model):
 class Election_Info(models.Model):
 	e_id = models.AutoField(primary_key=True)
 	#candidates_choice = models.ForeignKey(Candidates)
-	CANDIDATES_CHOICE = (('Sakura Haruna', 'Sakura Haruna'),
-		('Sasuke Uchiha','Sasuke Uchiha'),
-		('Uzumaki Naruto','Uzumaki Naruto'),
-		('Buttercup Oie', 'Buttercup Oie'),
+	CANDIDATES_CHOICE = (
+		('Chris Choi', 'Chris Choi'),
 		)
 	candidates_choice = MultiSelectField(choices=CANDIDATES_CHOICE, max_length=50)
 	e_name = models.CharField(max_length=100)

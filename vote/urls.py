@@ -4,7 +4,8 @@ from vote.views import (
 	staff_view, user_view, candidates, candidates_update, candidate_deleted,
 	candidate_delete_confirmation,user_info,user_info_update, view_candidates,
 	post_election,election_detail, elections, election_update, view_candidates_detail,
-	user_elections, user_election_detail, user_vote_success)
+	user_elections, user_election_detail, user_vote_success, election_delete_confirmation,
+	election_deleted)
 	# user_results_view, user_polls_view)
 
 from django.conf import settings 
@@ -29,6 +30,8 @@ urlpatterns = [
 	url(r'^admin/post_election/$', post_election, name='post_election'),
 	url(r'^admin/election_detail/(?P<e_id>\d+)/', election_detail, name='election_detail'),
 	url(r'^admin/elections/(?P<e_id>\d+)/edit/$', election_update , name="election_update"),
+	url(r'^admin/elections/(?P<e_id>\d+)/delete/$', election_delete_confirmation , name="election_delete_confirmation"),
+	url(r'^admin/elections/(?P<e_id>\d+)/delete_success/$', election_deleted , name="election_deleted"),
 	url(r'^admin/elections_form_list/$', elections, name="elections_list" ),
 	url(r'^user/(?P<u_id>\d+)/profile/$', user_info, name="user_info"),
 	url(r'^user/(?P<u_id>\d+)/edit/$', user_info_update, name="user_info_update"),
